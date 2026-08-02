@@ -3,32 +3,80 @@
 syntax uranite "\.urn$"
 comment "#"
 
-# Keywords
-color brightblue "\<(public|private|protect|function|class|struct|interface|trait|enum|extends|implements|use|raises|raise|except|try|finally|final|Readonly|match|switch|case|async|await|return|package|import|from|as|delete|new|instanceof|subclassof|lambda|unit|backed|property|Meta|Callable|if|elif|else|for|while|break|continue|yield|pass|defer|export|extern|type|const|mut|ref|own|move|addressof|unsafe|virtual|override|abstract|static|native|and|or|not|is|in|where|self|parent|asm|volatile)\>"
-
-# Built-in Types
-color green "\<(I8|I16|I32|I64|U8|U16|U32|U64|F32|F64|Int|UInt|Float|Double|String|Boolean|Char|Byte|Bytes|Long|Integer|Void|NoneType|Object|Bool)\>"
-
-# Literals
-color brightred "\<(True|False|None)\>"
-color brightred "\<0[xX][0-9a-fA-F_]+\>"
-color brightred "\<0[bB][01_]+\>"
-color brightred "\<0[oO][0-7_]+\>"
-color brightred "\<[0-9][0-9_]*\.[0-9][0-9_]*\>"
-color brightred "\<[0-9][0-9_]*\>"
-color brightmagenta ""(\\.|[^"])*""
-color brightmagenta "'(\\.|[^'])*'"
-
-# Multi-line strings/comments (approximated)
-color brightmagenta start="\"\"\"" end="\"\"\""
-color brightmagenta start="'''" end="'''"
-
-# Block comments
+# Block comments (must come before line comments)
 color cyan start="#\{" end="\}#"
 
-# Comments and @tags
+# Line comments and @tags
 color cyan "(^|[[:space:]])#.*$"
 color brightwhite "@[a-zA-Z]+"
 
-# Symbols
-color yellow "(\+|\-|\*|/|%|=|==|!=|<|>|<=|>=|=>|->|\?|:|;)"
+# Multi-line docstrings
+color brightmagenta start="\"\"\"" end="\"\"\""
+color brightmagenta start="'''" end="'''"
+
+# Docstring sections
+color brightwhite "(Parameters|Returns|Raises|Generics|Complexity|Requires|Stability|Examples|See Also):"
+
+# Docstring example markers
+color brightyellow ">>>"
+
+# Strings
+color brightmagenta ""(\\.|[^"])*""
+color brightmagenta "'(\\.|[^'])*'"
+
+# Access modifiers
+color brightblue "\<(public|private|protect)\>"
+
+# Control flow
+color brightblue "\<(if|elif|else|match|switch|case|for|while|break|continue|return|yield|pass)\>"
+
+# Exception handling
+color brightblue "\<(try|except|raise|raises|finally)\>"
+
+# Async
+color brightblue "\<(async|await|defer)\>"
+
+# Declarations
+color brightblue "\<(function|property|lambda|class|struct|enum|interface|trait|type|unit|backed)\>"
+
+# Module system
+color brightblue "\<(package|import|from|extern|extends|implements|use|export)\>"
+
+# Object lifecycle
+color brightblue "\<(new|delete)\>"
+
+# Type checks
+color brightblue "\<(instanceof|subclassof)\>"
+
+# Storage modifiers
+color brightblue "\<(virtual|override|abstract|final|Readonly|static|const|mut|ref|own|move|addressof|unsafe|native)\>"
+
+# Logical operators
+color brightblue "\<(and|or|not|is|in|as)\>"
+
+# Inline assembly
+color brightblue "\<(asm|volatile|output|input|clobber)\>"
+
+# Language variables
+color brightcyan "\<(self|parent)\>"
+
+# Built-in types
+color green "\<(I8|I16|I32|I64|U8|U16|U32|U64|F32|F64|Int|UInt|Float|Double|Boolean|Byte|Bytes|Char|Integer|Long|String|Void|NoneType|Object|Callable|Meta|Future|Generator)\>"
+
+# Literals
+color brightred "\<(True|False|None)\>"
+
+# Numbers
+color brightred "\<0[xX][0-9a-fA-F_]+\>"
+color brightred "\<0[bB][01_]+\>"
+color brightred "\<0[oO][0-7_]+\>"
+color brightred "\<[0-9][0-9_]*\.[0-9][0-9_]*([eE][+-]?[0-9]+)?\>"
+color brightred "\<[0-9][0-9_]*\>"
+
+# Operators
+color yellow "(\*\*=|<<=|>>=|\+=|-=|\*=|/=|%=|&=|\|=|\^=)"
+color yellow "(\.\.\.|\.\.|=>|->|==|!=|<=|>=|\*\*|\+\+|--|::|<<|>>)"
+color yellow "(\+|-|\*|/|%|&|\||\^|~|=|<|>|\?)"
+
+# Decorators
+color brightgreen "@[a-zA-Z_][a-zA-Z0-9_]*"
